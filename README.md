@@ -23,7 +23,7 @@ name: Auto Scale
 
 on:
   schedule:
-    - cron:  '*/5 * * * *' 
+    - cron:  '*/15 * * * *' 
       
 jobs:
   scale:
