@@ -2,6 +2,8 @@
 
 A Github action for monitoring memory utilization of apps running in a Cloud Foundry instance and scaling up or down as needed.
 
+Note - this action is currently in Beta. It has only been lightly tested and is still under development.
+
 ## How it works
 
 The `entrypoint.sh` script uses the [Cloud Foundry API](https://apidocs.cloudfoundry.org/194/apps/list_all_apps.html) to pull the memory quota and utilization for you app, and [averages utilization across all existing instances](https://github.com/cloud-gov/action-auto-scale/blob/master/entrypoint.sh#L13-L21). If the average memory utilization fall outside of the maximum and minimum thresholds you define when you create your action, the script will [scale your app horizontally](https://docs.cloudfoundry.org/devguide/deploy-apps/cf-scale.html#horizontal) by adding or removing instances based on the increment you define when you create your action.
@@ -11,8 +13,6 @@ To use this action, you should use the [schedule trigger for workflows](https://
 ## Usage
 
 Follow the instructions for setting up a [cloud.gov service account](https://cloud.gov/docs/services/cloud-gov-service-account/). Store you username (CG_USERNAME) and password (CG_PASSWORD) as [encrypted secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets). 
-
-Note - this action is currently in Beta. It has only been lightly tested and is still under development.
 
 ## Sample workflow
 
