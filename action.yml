@@ -1,5 +1,5 @@
-name: "Cloud.gov CF CLI Tools"
-description: "Deploy and manage apps on cloud.gov"
+name: "Cloud Foundry Auto Scale"
+description: "Github Action to monitor apps and scale them up or down as needed"
 inputs:
   cf_api:
     description: "Target API endpoint"
@@ -26,7 +26,7 @@ inputs:
     description: "The minimum memory threshold to trigger scaling up"
     required: true
   cf_instance_increment:
-    description: "The increment used toi scale app instances up or down"
+    description: "The increment used to scale app instances up or down"
     required: true
 runs:
   using: "docker"
