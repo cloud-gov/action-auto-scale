@@ -24,7 +24,7 @@ AVG_MEM_UTILIZATION=$(echo "scale=2; $TOTAL / $COUNT" | bc)
 if [ $AVG_MEM_UTILIZATION > "$INPUT_APP_MAX_MEM_THRESHOLD" ]; then
     echo "Average memory utilization across instances is approximately $AVG_MEM_UTILIZATION%."
     echo "Scaling UP"
-    cf scale $INPUT_CF_APP_NAME -i $((NUM_INSTANCES+INPUT_APP_INSTANCE_INCREMENT))
+    cf scale "$INPUT_CF_APP_NAME" -i $((NUM_INSTANCES+INPUT_APP_INSTANCE_INCREMENT))
 fi
 
 # If average utilization is below max threshold, scale down.
