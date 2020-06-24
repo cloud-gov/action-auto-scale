@@ -25,7 +25,7 @@ echo "THRESHOLD: $INPUT_CF_APP_MAX_THRESHOLD"
 if  [ $AVG_MEM_UTILIZATION -ge "$INPUT_CF_APP_MAX_THRESHOLD" ] ; then
     echo "Average memory utilization across instances is approximately $AVG_MEM_UTILIZATION%."
     echo "Scaling UP"
-    cf scale "$INPUT_CF_APP_NAME" -i $((NUM_INSTANCES+INPUT_APP_INSTANCE_INCREMENT))
+    cf scale "$INPUT_CF_APP_NAME" -i $((NUM_INSTANCES+INPUT_CF_INSTANCE_INCREMENT))
 fi
 
 # If average utilization is below max threshold, scale down.
@@ -33,7 +33,7 @@ if  [ $AVG_MEM_UTILIZATION -le "$INPUT_CF_APP_MIN_THRESHOLD" ] ; then
     echo "Average memory utilization across instances is approximately $AVG_MEM_UTILIZATION%."
     if [ $NUM_INSTANCES -gt 1 ]; then
         echo "Scaling DOWN"
-        cf scale "$INPUT_CF_APP_NAME" -i $((NUM_INSTANCES-INPUT_APP_INSTANCE_INCREMENT))
+        cf scale "$INPUT_CF_APP_NAME" -i $((NUM_INSTANCES-INPUT_CF_INSTANCE_INCREMENT))
     else 
         echo "No scaling changes needed."
     fi
