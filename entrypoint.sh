@@ -19,8 +19,7 @@ for i in $(echo $STATS | jq '.[] | (.stats.usage.mem /.stats.mem_quota)*100')
         ((COUNT++))
     done
 AVG_MEM_UTILIZATION=$(echo "$TOTAL / $COUNT" | bc)
-echo "AVG: $AVG_MEM_UTILIZATION"
-echo "THRESHOLD: $INPUT_CF_APP_MAX_THRESHOLD"
+
 # If average utilization is above max threshold, scale up.
 if  [ $AVG_MEM_UTILIZATION -ge "$INPUT_CF_APP_MAX_THRESHOLD" ] ; then
     echo "Average memory utilization across instances is approximately $AVG_MEM_UTILIZATION%."
