@@ -20,16 +20,16 @@ for i in $(echo $STATS | jq '.[] | (.stats.usage.mem /.stats.mem_quota)*100')
     done
 AVG_MEM_UTILIZATION=$(echo "$TOTAL / $COUNT" | bc)
 echo "AVG: $AVG_MEM_UTILIZATION"
-echo "THRESHOLD: $INPUT_CF_APP_MAX_MEM_THRESHOLD"
+echo "THRESHOLD: $INPUT_CF_APP_MAX_THRESHOLD"
 # If average utilization is above max threshold, scale up.
-if  [ $AVG_MEM_UTILIZATION -ge "$INPUT_CF_APP_MAX_MEM_THRESHOLD" ] ; then
+if  [ $AVG_MEM_UTILIZATION -ge "$INPUT_CF_APP_MAX_THRESHOLD" ] ; then
     echo "Average memory utilization across instances is approximately $AVG_MEM_UTILIZATION%."
     echo "Scaling UP"
     cf scale "$INPUT_CF_APP_NAME" -i $((NUM_INSTANCES+INPUT_APP_INSTANCE_INCREMENT))
 fi
 
 # If average utilization is below max threshold, scale down.
-if  [ $AVG_MEM_UTILIZATION -le "$INPUT_CF_APP_MIN_MEM_THRESHOLD" ] ; then
+if  [ $AVG_MEM_UTILIZATION -le "$INPUT_CF_APP_MIN_THRESHOLD" ] ; then
     echo "Average memory utilization across instances is approximately $AVG_MEM_UTILIZATION%."
     if [ $NUM_INSTANCES -gt 1 ]; then
         echo "Scaling DOWN"
