@@ -18,7 +18,7 @@ for i in $(echo $STATS | jq '.[] | (.stats.usage.mem /.stats.mem_quota)*100')
         TOTAL=$(echo $TOTAL+$i | bc )
         ((COUNT++))
     done
-AVG_MEM_UTILIZATION=$(echo "$TOTAL / $COUNT" | bc)
+AVG_MEM_UTILIZATION=$(echo "scale=2; $TOTAL / $COUNT" | bc | awk '{print ($0-int($0)<0.499)?int($0):int($0)+1}')
 
 # If average utilization is above max threshold, scale up.
 if  [ $AVG_MEM_UTILIZATION -ge "$INPUT_CF_APP_MAX_THRESHOLD" ] ; then
