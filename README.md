@@ -32,7 +32,7 @@ jobs:
    runs-on: ubuntu-latest
    
    steps:
-     - uses: cloud-gov/action-auto-scale@master
+     - uses: cloud-gov/action-auto-scale@main
        with:
         cf_api: https://api.fr.cloud.gov
         cf_username: ${{ secrets.CG_USERNAME }}
