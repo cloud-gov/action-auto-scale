@@ -7,13 +7,13 @@ cf target -o "$INPUT_CF_ORG" -s "$INPUT_CF_SPACE"
 
 # Get app details.
 GUID=$(cf app "$INPUT_CF_APP_NAME" --guid)
-STATS=$(cf curl "/v2/apps/$GUID/stats")
-NUM_INSTANCES=$(echo $STATS | jq '. | length')
+STATS=$(cf curl "/v3/processes/$GUID/stats")
+NUM_INSTANCES=$(echo $STATS | jq '.resources | length')
 
 # Calculate average memory utilization across app inatances.
 COUNT=0;
 TOTAL=0; 
-for i in $(echo $STATS | jq '.[] | (.stats.usage.mem /.stats.mem_quota)*100')
+for i in $(echo $STATS | jq '.resources[] | (.usage.mem / .mem_quota)*100')
     do
         TOTAL=$(echo $TOTAL+$i | bc )
         ((COUNT++))
@@ -39,7 +39,7 @@ if  [ $AVG_MEM_UTILIZATION -le "$INPUT_CF_APP_MIN_THRESHOLD" ] ; then
 fi
 
 # Display number of instances.
-NEW_INSTANCE_COUNT=$(cf curl "/v2/apps/$GUID/stats" | jq '. | length')
+NEW_INSTANCE_COUNT=$(cf curl "/v3/processes/$GUID/stats" | jq '.resources | length')
 if [ $NUM_INSTANCES -eq 1 ]; then
     echo "Number of instances remains $NUM_INSTANCES"
 else 
