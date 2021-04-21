@@ -6,7 +6,7 @@ Note - this action is currently in Beta. It has only been lightly tested and is 
 
 ## How it works
 
-The `entrypoint.sh` script uses the [Cloud Foundry API](https://apidocs.cloudfoundry.org/194/apps/list_all_apps.html) to pull the memory quota and utilization for you app, and [averages utilization across all existing instances](https://github.com/cloud-gov/action-auto-scale/blob/master/entrypoint.sh#L13-L21). If the average memory utilization fall outside of the maximum and minimum thresholds you define when you create your action, the script will [scale your app horizontally](https://docs.cloudfoundry.org/devguide/deploy-apps/cf-scale.html#horizontal) by adding or removing instances based on the increment you define when you create your action.
+The `entrypoint.sh` script uses the [Cloud Foundry API](https://v3-apidocs.cloudfoundry.org/version/3.99.0/index.html) to pull the memory quota and utilization for you app, and [averages utilization across all existing instances](https://github.com/cloud-gov/action-auto-scale/blob/master/entrypoint.sh#L13-L21). If the average memory utilization fall outside of the maximum and minimum thresholds you define when you create your action, the script will [scale your app horizontally](https://docs.cloudfoundry.org/devguide/deploy-apps/cf-scale.html#horizontal) by adding or removing instances based on the increment you define when you create your action.
 
 To use this action, you should use the [schedule trigger for workflows](https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule) at an interval that best meets your needs.
 
