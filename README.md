@@ -2,7 +2,7 @@
 
 A Github action for monitoring memory utilization of apps running in a Cloud Foundry instance and scaling up or down as needed.
 
-Note - this action is currently in Beta. It has only been lightly tested and is still under development.
+Note - this action is currently in Beta. It has only been lightly tested and is still under development. But it does outline one approach to automating app scaling using the [Cloud Foundry API](https://v3-apidocs.cloudfoundry.org/version/3.99.0/index.html#get-stats-for-a-process) and [cf scale](https://cli.cloudfoundry.org/en-US/v6/scale.html).
 
 ## How it works
 
