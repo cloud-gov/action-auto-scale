@@ -1,3 +1,9 @@
+# Archive Notice
+
+This repository is now archived and no longer maintained. It is preserved for historical reference only. For current Cloud.gov projects and documentation, please visit [cloud.gov](https://cloud.gov) or our repositories at [Cloud.gov on github](https://github.com/cloud-gov).
+
+
+
 # CF Autoscale Action
 
 A Github action for monitoring memory utilization of apps running in a Cloud Foundry instance and scaling up or down as needed.
